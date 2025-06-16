@@ -1,6 +1,6 @@
 # SoulPeg Documentation
 
-![SoulPeg Docs](./public/logo-soulpeg.png)
+<img src="./public/logo-soulpeg.png" alt="SoulPeg Docs" width="120" height="120">
 
 **Official documentation for SoulPeg Labs ecosystem**
 

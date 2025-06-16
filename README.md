@@ -1,6 +1,6 @@
 # SoulPeg Documentation
 
-![SoulPeg Docs](https://via.placeholder.com/200x80/1a1a1a/ffffff?text=SoulPeg+Docs)
+![SoulPeg Docs](./public/logo-soulpeg.png)
 
 **Official documentation for SoulPeg Labs ecosystem**
 

@@ -1,0 +1,409 @@
+[
+  {
+    "title": "audit-status",
+    "slug": "faq/audit-status",
+    "description": "",
+    "headings": [
+      "Audit Status",
+      "AI-Assisted Code Review",
+      "Audit Plans",
+      "Summary"
+    ],
+    "content": "\n\n\n# Audit Status\n\nAs of now, the SoulPeg smart contracts have not undergone a formal third-party audit due to limited funding during the early development phase.\n\n## AI-Assisted Code Review\n\nInstead of relying solely on unaudited code, the protocol was extensively reviewed with the assistance of advanced AI models trained on smart contract security, Solidity best practices, and vulnerability detection. Each contract component was validated for:\n\n- Reentrancy risks\n- Access control logic\n- Token"
+  },
+  {
+    "title": "can-i-transfer",
+    "slug": "faq/can-i-transfer",
+    "description": "",
+    "headings": [
+      "Can I Transfer sUSDC?",
+      "When Transfers Are Blocked",
+      "When Transfers Are Allowed",
+      "Special Exceptions",
+      "Summary"
+    ],
+    "content": "\n\n# Can I Transfer sUSDC?\n\nBy design, sUSDC is a non-transferable token—meaning it cannot be freely sent or traded between wallets like standard ERC-20 tokens. This restriction is intentional and core to the SoulPeg protocol’s staking logic.\n\n## When Transfers Are Blocked\n\nWhile your wallet is in a locked state, you cannot:\n- Transfer sUSDC to another address\n- Approve arbitrary contracts to spend your sUSDC\n- Interact with most DEXs or protocols using sUSDC\n\nAny attempt to do so will revert wit"
+  },
+  {
+    "title": "how-locks-work",
+    "slug": "faq/how-locks-work",
+    "description": "",
+    "headings": [
+      "How Locking Works",
+      "What Triggers a Lock?",
+      "How Do I Know If I’m Locked?",
+      "When Do I Unlock?",
+      "Can I Skip the Lock?",
+      "Summary"
+    ],
+    "content": "# How Locking Works\n\nSoulPeg uses a time-based locking system to enforce staking commitments and mitigate short-term gaming or abuse. When sUSDC is minted—either via deposit or reward—it becomes locked to the user’s wallet for a fixed duration.\n\n## What Triggers a Lock?\n\nA lock is applied whenever:\n- A user deposits USDC and receives sUSDC\n- A user receives rewards through `rewardMint()`\n\nThe lock duration is set during minting and must fall between:\n- **Minimum**: 1 hour\n- **Maximum**: 365 days"
+  },
+  {
+    "title": "how-rewards-work",
+    "slug": "faq/how-rewards-work",
+    "description": "",
+    "headings": [
+      "How Are Rewards Distributed?",
+      "How Are Rewards Generated?",
+      "How Are Rewards Delivered?",
+      "Can I Claim Rewards Manually?",
+      "Summary"
+    ],
+    "content": "\n\n\n# How Are Rewards Distributed?\n\nSoulPeg distributes staking rewards through a controlled on-chain process rather than relying on automatic rebasing or inflation. Rewards are delivered in the form of sUSDC and are subject to the same locking mechanics as initial deposits.\n\n## How Are Rewards Generated?\n\nThe protocol does not mint arbitrary yield. Instead, rewards are distributed based on:\n\n- Protocol-collected fees\n- Treasury strategies (e.g. partnerships, integrations)\n- Manual issuance by go"
+  },
+  {
+    "title": "how-to-unlock",
+    "slug": "faq/how-to-unlock",
+    "description": "",
+    "headings": [
+      "How Do I Unlock My Tokens?",
+      "When Should I Unlock?",
+      "How to Unlock",
+      "How to Know If You’re Still Locked",
+      "Can Someone Else Unlock Me?",
+      "Summary"
+    ],
+    "content": "\n\n\n# How Do I Unlock My Tokens?\n\nUnlocking your sUSDC is a required manual step after your lock period expires. Until this step is performed, your tokens will remain non-transferable even if the lock duration has passed.\n\n## When Should I Unlock?\n\nYou should unlock your address when:\n- Your time-based lock has expired (check via `getRemainingLockTime()`)\n- You want to transfer, trade, or interact with DEXs or other protocols\n- You are no longer staking and need to access utility of your sUSDC\n\n#"
+  },
+  {
+    "title": "security-safeguards",
+    "slug": "faq/security-safeguards",
+    "description": "",
+    "headings": [
+      "Security Safeguards",
+      "Reentrancy Protection",
+      "Pause Functionality",
+      "Daily Limits",
+      "Transfer Restrictions",
+      "OnlyOwner Controls",
+      "Event Logging",
+      "Summary"
+    ],
+    "content": "\n\n\n# Security Safeguards\n\nSoulPeg integrates multiple security layers at both the smart contract and operational level to protect user funds and ensure protocol integrity.\n\n## Reentrancy Protection\n\nAll sensitive functions that involve external calls (e.g., transfers, mints, redemptions) are wrapped with OpenZeppelin’s `ReentrancyGuard`. This ensures attackers cannot exploit reentrant execution paths.\n\n## Pause Functionality\n\nThe contract includes a `pause()` mechanism that allows the owner (typ"
+  },
+  {
+    "title": "what-if-i-lose-wallet",
+    "slug": "faq/what-if-i-lose-wallet",
+    "description": "",
+    "headings": [
+      "What If I Lose My Wallet?",
+      "Can I Recover My sUSDC?",
+      "Why No Recovery?",
+      "What About Admin Unlock?",
+      "Recommended Precautions",
+      "Summary"
+    ],
+    "content": "# What If I Lose My Wallet?\n\nLosing access to your wallet is a critical issue in any blockchain-based protocol. In SoulPeg, since sUSDC is a soul-bound and non-transferable token, losing your wallet means permanently losing access to your staked assets.\n\n## Can I Recover My sUSDC?\n\nNo. sUSDC is not recoverable or transferable. It is permanently tied to your wallet address and cannot be sent to another wallet, even by an admin. There is no recovery mechanism available once you lose access to the "
+  },
+  {
+    "title": "what-is-susdc",
+    "slug": "faq/what-is-susdc",
+    "description": "",
+    "headings": [
+      "What is sUSDC?",
+      "Purpose",
+      "Key Characteristics"
+    ],
+    "content": "\n\n\n# What is sUSDC?\n\nsUSDC is a soul-bound stablecoin minted by the SoulPeg protocol in exchange for standard USDC deposits. It is pegged 1:1 with USDC and designed to serve as a non-transferable yield-bearing token on the Binance Smart Chain (BSC).\n\nUnlike traditional stablecoins, sUSDC cannot be transferred freely between wallets. Once minted, it is permanently tied to the wallet that received it unless explicitly unlocked after a designated lock period.\n\n## Purpose\n\nThe primary function of sU"
+  },
+  {
+    "title": "why-soulbound",
+    "slug": "faq/why-soulbound",
+    "description": "",
+    "headings": [
+      "Why Soulbound?",
+      "Eliminate Speculation",
+      "Strengthen Security",
+      "Enforce Commitment",
+      "Accurate Attribution",
+      "Simplify Governance",
+      "Summary"
+    ],
+    "content": "\n\n\n# Why Soulbound?\n\nSoul-bound tokens are assets that cannot be transferred between wallets unless specific conditions are met. In the case of sUSDC, this design is central to the SoulPeg protocol’s mission of building a secure, manipulation-resistant staking environment.\n\n## Eliminate Speculation\n\nBy preventing transfers, sUSDC removes the possibility of secondary market speculation, pump-and-dump behavior, or token flipping. This reinforces the protocol’s long-term yield-oriented purpose and "
+  },
+  {
+    "title": "SoulPeg Docs",
+    "slug": "index",
+    "description": "Official documentation for SoulPeg - Soulbound stablecoin protocol on BSC",
+    "headings": [
+      "Welcome to SoulPeg Docs",
+      "Quick Navigation",
+      "🧭 [Introducing](/docs/introducing/what-is-soulpeg)",
+      "⚙️ [Protocol](/docs/protocol/token-flow)",
+      "💸 [How to Use](/docs/how-to-use/how-to-stake)",
+      "📜 [Whitepaper](/docs/whitepaper/abstract)"
+    ],
+    "content": "\n# Welcome to SoulPeg Docs\n\nSoulPeg is a revolutionary DeFi protocol that introduces soul-bound stablecoins (stUSDC) on the Binance Smart Chain.\n\n## Quick Navigation\n\n### 🧭 [Introducing](/docs/introducing/what-is-soulpeg)\nLearn about SoulPeg, its key features, and why it's different from other protocols.\n\n### ⚙️ [Protocol](/docs/protocol/token-flow)\nUnderstand the technical architecture, smart contracts, and security model.\n\n### 💸 [How to Use](/docs/how-to-use/how-to-stake)\nStep-by-step guides"
+  },
+  {
+    "title": "Key Features",
+    "slug": "introducing/key-features",
+    "description": "Core features that make SoulPeg unique",
+    "headings": [
+      "Key Features",
+      "Soulbound Tokens",
+      "Flash-Loan Resistance",
+      "Sustainable Yield",
+      "Security-Centric Architecture",
+      "Transparent Protocol Mechanics"
+    ],
+    "content": "\n# Key Features\n\n## Soulbound Tokens\n\nsUSDC tokens are non-transferable and permanently linked to the wallet that minted them:\n- Cannot be transferred or traded\n- Eliminates speculative trading behavior\n- Reinforces long-term staking commitment\n- Enables accurate and fair reward attribution\n\n## Flash-Loan Resistance\n\nDesigned to neutralize flash loan-based exploits:\n- No borrowing-returning cycles can exploit the system\n- Protects the protocol’s yield pools from manipulation\n- Secures the integr"
+  },
+  {
+    "title": "What is SoulPeg?",
+    "slug": "introducing/what-is-soulpeg",
+    "description": "Introduction to SoulPeg - a soulbound stablecoin protocol",
+    "headings": [
+      "What is SoulPeg?",
+      "Core Concept",
+      "Mission",
+      "Built on BSC"
+    ],
+    "content": "\n# What is SoulPeg?\n\nSoulPeg is a decentralized staking protocol designed to introduce a new category of stable assets on the Binance Smart Chain (BSC), known as **soul-bound stablecoins (sUSDC)**. Unlike traditional stablecoins, sUSDC tokens are non-transferable and permanently linked to the wallet that minted them. This soul-bound design prevents the use of these tokens in flash loan exploits or other high-frequency attacks, improving protocol-level security.\n\nSoulPeg is engineered for simplic"
+  },
+  {
+    "title": "analytics-monitoring",
+    "slug": "protocol/analytics-monitoring",
+    "description": "",
+    "headings": [
+      "Analytics & Monitoring",
+      "Protocol Statistics",
+      "Daily Limits Overview",
+      "User-Level Insight",
+      "Events for Indexing",
+      "Summary"
+    ],
+    "content": "\n\n\n# Analytics & Monitoring\n\nSoulPeg provides several read-only functions to support dashboards, analytics platforms, and automated monitoring tools. These functions expose key protocol data points to enhance transparency and help users, developers, and integrators make informed decisions.\n\n## Protocol Statistics\n\nThe `getProtocolStats()` function returns high-level information about the current state of the protocol:\n\n- `totalSupply`: Total sUSDC in circulation\n- `totalUSDCDeposited`: Aggregate"
+  },
+  {
+    "title": "contract-design",
+    "slug": "protocol/contract-design",
+    "description": "",
+    "headings": [
+      "Contract Design",
+      "Architecture Overview",
+      "Key Features",
+      "Events",
+      "Versioning and Deployment",
+      "Gas and Efficiency",
+      "Summary"
+    ],
+    "content": "\n\n\n# Contract Design\n\nThe SoulPeg protocol is implemented as a single smart contract with carefully layered security, operational flexibility, and on-chain transparency. The design favors clarity, auditability, and minimal external dependency.\n\n## Architecture Overview\n\nThe `StakeableAsset` contract inherits functionality from several OpenZeppelin components:\n\n- `ERC20`: standard token interface\n- `ERC20Permit`: enables gasless approvals (EIP-2612)\n- `Ownable2Step`: two-step ownership transfer f"
+  },
+  {
+    "title": "flash-loan-resistance",
+    "slug": "protocol/flash-loan-resistance",
+    "description": "",
+    "headings": [
+      "Flash-Loan Resistance",
+      "No Transferability = No Arbitrage",
+      "Lock Enforcement",
+      "Deliberate Unlock Step",
+      "Protocol-Level Throttling",
+      "External Call Protection",
+      "Summary"
+    ],
+    "content": "\n\n\n# Flash-Loan Resistance\n\nFlash loans are a major threat vector in DeFi, allowing attackers to borrow large sums of tokens without collateral and exploit vulnerable systems within a single transaction. SoulPeg is explicitly designed to mitigate such risks through a combination of architectural and protocol-level decisions.\n\n## No Transferability = No Arbitrage\n\nBecause sUSDC is non-transferable while locked, it cannot be moved between accounts or protocols. This breaks the core requirement of "
+  },
+  {
+    "title": "locking-mechanism",
+    "slug": "protocol/locking-mechanism",
+    "description": "",
+    "headings": [
+      "Locking Mechanism",
+      "Lock Period Enforcement",
+      "Unlocking Process",
+      "Special Cases",
+      "Checking Lock Status"
+    ],
+    "content": "\n\n\n# Locking Mechanism\n\nSoulPeg enforces a time-based locking mechanism to ensure stability and discourage rapid inflow/outflow behaviors often seen in yield protocols. This mechanism applies to all sUSDC tokens minted through deposits or reward distributions.\n\n## Lock Period Enforcement\n\nEvery time sUSDC is minted—whether through a user deposit or protocol reward—it is assigned a lock period. The duration is defined in seconds and is stored per user using the `unlockAt` mapping. During this tim"
+  },
+  {
+    "title": "security-limits",
+    "slug": "protocol/security-limits",
+    "description": "",
+    "headings": [
+      "Security & Limits",
+      "Daily Limits",
+      "Reentrancy Protection",
+      "Emergency Controls",
+      "Whitelisted Operations",
+      "Role Separation and Ownership",
+      "Transparency by Design",
+      "Summary"
+    ],
+    "content": "\n\n\n# Security & Limits\n\nSoulPeg’s architecture includes multiple layers of built-in safety mechanisms to reduce risk, ensure system integrity, and prevent abuse. These controls span from smart contract-level protections to operational governance practices.\n\n## Daily Limits\n\nTo mitigate the impact of potential exploits and preserve protocol health, SoulPeg enforces daily caps on deposit and mint volumes:\n\n- **DAILY_DEPOSIT_LIMIT**: Maximum amount of USDC that can be deposited across all users per"
+  },
+  {
+    "title": "token-lifecycle",
+    "slug": "protocol/token-lifecycle",
+    "description": "",
+    "headings": [
+      "Token Lifecycle",
+      "1. Deposit and Mint",
+      "2. Lock Period",
+      "3. Reward Distribution",
+      "4. Unlocking",
+      "5. Redemption",
+      "6. Lifecycle Completion"
+    ],
+    "content": "\n\n\n# Token Lifecycle\n\nThe SoulPeg protocol manages a complete lifecycle for sUSDC, the soul-bound staking token. Each step is carefully designed to enforce security, ensure accountability, and deliver sustainable yield without speculative transferability.\n\n## 1. Deposit and Mint\n\nUsers begin by authorizing the protocol to transfer USDC from their wallets. Once approved, the protocol mints an equivalent amount of sUSDC (1:1) to the user’s address. This operation is executed by the protocol owner "
+  },
+  {
+    "title": "transfer-restrictions",
+    "slug": "protocol/transfer-restrictions",
+    "description": "",
+    "headings": [
+      "Transfer Restrictions",
+      "Non-Transferable by Default",
+      "Unlock Requirement",
+      "Whitelisted DEX Support",
+      "Special Addresses",
+      "Approvals and Restrictions",
+      "Summary"
+    ],
+    "content": "\n\n\n# Transfer Restrictions\n\nSoulPeg is built around the concept of soul-bound tokens—assets that are non-transferable by default. This design introduces strong guarantees around protocol behavior and reward eligibility, and helps ensure that tokenized positions cannot be sold, traded, or used in exploitative financial loops.\n\n## Non-Transferable by Default\n\nsUSDC tokens are non-transferable unless the holding address is explicitly unlocked. This restriction is enforced at the contract level thro"
+  },
+  {
+    "title": "abstract",
+    "slug": "whitepaper/abstract",
+    "description": "",
+    "headings": [
+      "Abstract"
+    ],
+    "content": "# Abstract\n\nSoulPeg is a decentralized staking protocol designed to issue a new category of stable digital assets—soul-bound yield-bearing tokens—on the Binance Smart Chain (BSC). The system centers around sUSDC, a non-transferable token minted 1:1 from standard USDC deposits and bound permanently to the originating wallet.\n\nUnlike traditional staking platforms, SoulPeg enforces time-based locking per address, requires explicit manual unlocking, and eliminates token transferability during the lo"
+  },
+  {
+    "title": "burn-and-supply-control",
+    "slug": "whitepaper/burn-and-supply-control",
+    "description": "",
+    "headings": [
+      "Burn & Supply Control",
+      "Purpose of Burn Functionality",
+      "Governance Considerations",
+      "No Algorithmic Supply Reduction",
+      "Complementary Controls",
+      "Summary"
+    ],
+    "content": "\n\n\n# Burn & Supply Control\n\nSoulPeg includes administrative burn functionality to enable controlled reduction of circulating sUSDC in rare or protocol-critical scenarios. Unlike inflationary systems that continuously expand supply, SoulPeg emphasizes manual supply discipline, including the ability to retire tokens when necessary.\n\n## Purpose of Burn Functionality\n\nThe `burn(address,uint256)` function allows the protocol owner to forcibly remove sUSDC from any address. While powerful, this functi"
+  },
+  {
+    "title": "governance-multisig",
+    "slug": "whitepaper/governance-multisig",
+    "description": "",
+    "headings": [
+      "Governance & Multisig",
+      "Multisig Ownership",
+      "Privileged Functions",
+      "Future-Proofing Governance",
+      "Emergency and Operational Balance",
+      "Summary"
+    ],
+    "content": "\n\n\n# Governance & Multisig\n\nSoulPeg uses owner-restricted functions for all critical protocol operations, including minting, unlocking, burning, redeeming, and configuration. These operations are intentionally gated to allow for precise control, but must also be governed transparently and securely.\n\n## Multisig Ownership\n\nIt is strongly recommended that protocol ownership be transferred to a multisig wallet, such as a Gnosis Safe. This ensures that no single party can execute privileged actions "
+  },
+  {
+    "title": "locking-and-soulbound",
+    "slug": "whitepaper/locking-and-soulbound",
+    "description": "",
+    "headings": [
+      "Locking & Soulbound Logic",
+      "Locking Mechanism",
+      "Soul-Bound Enforcement",
+      "Explicit Unlock Step",
+      "One-Time Unlock",
+      "Auto-Unlock via Burn",
+      "Summary"
+    ],
+    "content": "\n\n\n# Locking & Soulbound Logic\n\nSoulPeg enforces token immobility through a combination of per-address time locks and protocol-restricted transfer permissions. Together, these mechanics form the basis for the soul-bound nature of sUSDC and the protocol’s security architecture.\n\n## Locking Mechanism\n\nEach time sUSDC is minted—via user deposit or reward distribution—the recipient address is locked for a defined duration. This lock period is stored on-chain using the `unlockAt` mapping.\n\n- Minimum "
+  },
+  {
+    "title": "protocol-architecture",
+    "slug": "whitepaper/protocol-architecture",
+    "description": "",
+    "headings": [
+      "Protocol Architecture",
+      "Core Design Principles",
+      "Contract Composition",
+      "Functional Modules",
+      "Operational Boundaries",
+      "Summary"
+    ],
+    "content": "# Protocol Architecture\n\nThe SoulPeg protocol is composed of a single staking contract designed with strong modularity and clear separation of concerns. Its primary purpose is to issue and manage a soul-bound, yield-bearing token (sUSDC) while minimizing risks typically found in DeFi protocols.\n\n## Core Design Principles\n\n- **Minimalism**: A single contract governs all minting, burning, locking, and unlocking logic.\n- **On-chain enforcement**: All critical constraints—such as transfer restrictio"
+  },
+  {
+    "title": "reward-distribution",
+    "slug": "whitepaper/reward-distribution",
+    "description": "",
+    "headings": [
+      "Reward Distribution",
+      "Governance-Minted Rewards",
+      "Lock Inheritance",
+      "Non-Compounding by Design",
+      "No “Claim” Function",
+      "Monitoring and Transparency",
+      "Summary"
+    ],
+    "content": "\n\n\n# Reward Distribution\n\nSoulPeg uses a manual, governance-controlled mechanism for distributing yield to participants. Rewards are issued in sUSDC, follow the same locking mechanics as initial deposits, and are designed to prevent abuse or inflation-based dilution.\n\n## Governance-Minted Rewards\n\nAll rewards are minted via the `rewardMint()` function, which is restricted to the protocol owner (typically a multisig). There is no automatic or scheduled emission. This function allows precise contr"
+  },
+  {
+    "title": "roadmap",
+    "slug": "whitepaper/roadmap",
+    "description": "",
+    "headings": [
+      "Roadmap",
+      "June 2025 — Genesis Deployment",
+      "June–July 2025 — Beta Phase",
+      "Q3 2025 — Public Launch",
+      "Q4 2025 — Cross-Chain Expansion (Tentative)",
+      "2026 and Beyond",
+      "Disclaimer"
+    ],
+    "content": "\n\n\n# Roadmap\n\nSoulPeg will follow a phased rollout approach to ensure controlled deployment, real-world feedback, and gradual decentralization. The project prioritizes transparency, safety, and protocol maturity over rapid expansion.\n\n## June 2025 — Genesis Deployment\n\n- Deploy SoulPeg smart contract to Binance Smart Chain (BSC)\n- Mint and unlock initial sUSDC for liquidity provisioning (e.g. PancakeSwap)\n- Launch documentation site and whitepaper\n- Enable `depositAndMint()` and `rewardMint()` u"
+  },
+  {
+    "title": "security-model",
+    "slug": "whitepaper/security-model",
+    "description": "",
+    "headings": [
+      "Security Model",
+      "Minimal Attack Surface",
+      "Permissioned Minting and Transfers",
+      "Manual Unlocking",
+      "Daily Limits",
+      "Emergency Controls",
+      "Event Logging and Transparency",
+      "Summary"
+    ],
+    "content": "\n\n\n# Security Model\n\nSoulPeg’s security strategy is built around protocol-level constraints, minimal trust assumptions, and on-chain enforceability. It avoids external dependencies, minimizes composability risks, and favors explicit control over speculative automation.\n\n## Minimal Attack Surface\n\nThe protocol deliberately excludes:\n- Price oracles\n- Rebase mechanics\n- Automated liquidity balancing\n- Cross-chain bridges\n- Third-party integrations at mint/transfer points\n\nBy removing these high-ri"
+  },
+  {
+    "title": "token-lifecycle-whitepaper",
+    "slug": "whitepaper/token-lifecycle-whitepaper",
+    "description": "",
+    "headings": [
+      "Token Lifecycle",
+      "Stage 1: Deposit and Minting",
+      "Stage 2: Locked Staking Period",
+      "Stage 3: Manual Unlocking",
+      "Stage 4: Post-Unlock State",
+      "Reward Lifecycle",
+      "Early Redemption",
+      "Lifecycle Integrity"
+    ],
+    "content": "\n\n\n# Token Lifecycle\n\nThe SoulPeg token lifecycle consists of controlled stages designed to enforce staking intent, yield eligibility, and transfer safety. Unlike typical staking tokens, sUSDC is soul-bound and interacts with the protocol through tightly scoped state transitions.\n\n## Stage 1: Deposit and Minting\n\nThe lifecycle begins when a user authorizes the protocol to transfer USDC and the owner (typically a multisig) calls `depositAndMint()`. The contract mints sUSDC at a 1:1 ratio and lock"
+  },
+  {
+    "title": "tokenomics",
+    "slug": "whitepaper/tokenomics",
+    "description": "",
+    "headings": [
+      "Tokenomics",
+      "Initial Minting and Liquidity",
+      "Mint Sources",
+      "No Inflationary Curve",
+      "Burn Mechanisms",
+      "Summary"
+    ],
+    "content": "# Tokenomics\n\nSoulPeg does not launch with a predefined total supply of sUSDC. The token supply is dynamic and minted on demand in response to protocol actions—either user deposits or controlled reward issuance.\n\n## Initial Minting and Liquidity\n\nAt genesis, the total supply of sUSDC is zero. To bootstrap liquidity on a decentralized exchange (e.g., PancakeSwap), the protocol owner may pre-mint a fixed amount of sUSDC—such as 5,000 sUSDC—and pair it with an equivalent amount of USDC from treasur"
+  }
+]
